@@ -32,7 +32,7 @@ public class AuthAndAutApplication {
 				roles.add(adminRole);
 
 				ApplicationUser admin = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles);
-				userRepository.save(admin);
+				userRepository.save(admin); //
 
 		};
 	}
