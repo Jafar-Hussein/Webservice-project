@@ -1,6 +1,6 @@
 package com.example.AuthAndAut;
 
-import com.example.AuthAndAut.models.ApplicationUser;
+import com.example.AuthAndAut.models.User;
 import com.example.AuthAndAut.models.Role;
 import com.example.AuthAndAut.repository.RoleRepository;
 import com.example.AuthAndAut.repository.UserRepository;
@@ -31,7 +31,7 @@ public class AuthAndAutApplication {
 
 				roles.add(adminRole);
 
-				ApplicationUser admin = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles);
+				User admin = new User(1, "admin", passwordEncoder.encode("password"), roles);
 				userRepository.save(admin); //
 
 		};

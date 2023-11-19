@@ -11,32 +11,41 @@ import java.util.Collection;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class ApplicationUser implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id") //
     private Integer user_id;
-
+    @Column(unique = true) //gör så att namn inte är likadant
     private String username;
 
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role_junction", joinColumns = {@JoinColumn(name = "user_id")},
-    inverseJoinColumns = {@JoinColumn(name = "role_id")})
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> authorities;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "userpost_role_junction", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "post_id")})
+    private Set<Post> posts;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
     }
 
+    public User(Integer userId, String username, String password, Set<Role> authorities) {
+        super();
+        this.user_id = userId;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
     @Override
     public String getPassword() {
         return this.password;

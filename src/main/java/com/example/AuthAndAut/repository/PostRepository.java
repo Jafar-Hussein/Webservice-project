@@ -1,12 +1,12 @@
 package com.example.AuthAndAut.repository;
 
-import com.example.AuthAndAut.models.User;
+import com.example.AuthAndAut.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findByUsername(String username);//
+public interface PostRepository extends JpaRepository<Post,Integer>{
+    Optional<Post>findUserPostByTitle(String title);
 }
