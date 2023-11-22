@@ -18,12 +18,8 @@ public class Post {
     @Column(name = "post_id")
     private Integer id;
     private String title;
-    @Column(name = "description")
     private String description;
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_post_junction", joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "user_id")})
 @ManyToMany(mappedBy = "posts", fetch = FetchType.EAGER)
 private Set<User> users;
 
