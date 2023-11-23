@@ -30,9 +30,8 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> authorities;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "userpost_role_junction", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "post_id")})
+    // In User entity
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Post> posts;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
