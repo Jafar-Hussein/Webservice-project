@@ -25,10 +25,6 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
-    public Optional<Post> findUserPostByTitle(String title) {
-        return postRepository.findUserPostByTitle(title);
-    }
-
     public Post savePost(Post post) {
         return postRepository.save(post);
     }
