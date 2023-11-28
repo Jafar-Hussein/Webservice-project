@@ -10,12 +10,19 @@ import java.security.interfaces.RSAPublicKey;
 @Data
 @Component
 public class KeyProperties {
+    // RSAPrivateKey för privat nyckel och RSAPublicKey för offentlig nyckel
     private RSAPrivateKey privateKey;
     private RSAPublicKey publicKey;
 
+    // Konstruktör som genererar ett RSA-nyckelpar vid skapandet av en instans av klassen
     public KeyProperties() {
-        KeyPair pair = KeyGenerator.generateRsaKey();
-        this.publicKey = (RSAPublicKey) pair.getPublic();
-        this.privateKey = (RSAPrivateKey) pair.getPrivate();
+        // Använd KeyGenerator för att generera RSA-nyckelpar
+        KeyPair par = KeyGenerator.generateRsaKey();
+
+        // Sätt den offentliga nyckeln
+        this.publicKey = (RSAPublicKey) par.getPublic();
+
+        // Sätt den privata nyckeln
+        this.privateKey = (RSAPrivateKey) par.getPrivate();
     }
 }

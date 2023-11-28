@@ -21,19 +21,19 @@ public class AuthAndAutApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder){
-		return args ->{
+	CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		return args -> {
 			if (roleRepository.findByAuthority("ADMIN").isPresent()) return;
-				Role adminRole = roleRepository.save(new Role("ADMIN"));
-				roleRepository.save(new Role("USER"));
 
-				Set<Role> roles = new HashSet<>();
+			Role adminRole = roleRepository.save(new Role("ADMIN"));
+			roleRepository.save(new Role("USER"));
 
-				roles.add(adminRole);
+			Set<Role> roles = new HashSet<>();
+			roles.add(adminRole);
 
-				User admin = new User(1, "admin", passwordEncoder.encode("password"), roles);
-				userRepository.save(admin); //
-
+			User admin = new User(1, "admin", passwordEncoder.encode("password"), roles);
+			userRepository.save(admin);
 		};
 	}
+
 }

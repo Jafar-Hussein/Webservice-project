@@ -17,16 +17,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    // Injicera PostService för att hantera inlägg
     @Autowired
     private PostService postService;
+    // Injicera UserService för att hantera användarinformation
     @Autowired
     private UserService userService;
-    private  User user;
     @GetMapping("/")
     public String helloUserController(){
         return "User access level";
     }
 
+    // Lägg till ett inlägg för den autentiserade användaren
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/addPost")
     public ResponseEntity<?> addPost(@RequestBody Post post) {
@@ -34,22 +36,22 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or missing post data");
         }
 
-        // Get the current authenticated user
+        // Hämta den aktuella autentiserade användaren
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserUsername = authentication.getName();
 
-        // Load the user from the database
+        // Ladda användaren från databasen
         User currentUser = (User) userService.loadUserByUsername(currentUserUsername);
 
-        // Check if the user is not null
+        // Kontrollera om användaren inte är null
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to get current user");
         }
 
-        // Set the user to the post
+        // Sätt användaren till inlägget
         post.setUser(currentUser);
 
-        // Save the post
+        // Spara inlägget
         Post savedPost = postService.savePost(post);
 
         if (savedPost != null) {
@@ -59,6 +61,7 @@ public class UserController {
         }
     }
 
+    // Hämta alla inlägg
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/getPosts")
     public ResponseEntity<List<Post>> getPosts() {
@@ -69,10 +72,13 @@ public class UserController {
 
         return ResponseEntity.ok(posts);
     }
-    @PreAuthorize("hasRole('USER')")
+    // Uppdatera ett inlägg för administratörsrollen
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updatePost/{postId}")
     public ResponseEntity<?> updatePost(@PathVariable int postId, @RequestBody Post updatedPost) {
         Post existingPost = postService.getPostById(postId).orElse(null);
+
+        // Kontrollera om inlägget finns
         if (existingPost == null) {
             return ResponseEntity.notFound().build();
         }
@@ -80,57 +86,50 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserUsername = authentication.getName();
 
-        // Load the user from the database
         User currentUser = (User) userService.loadUserByUsername(currentUserUsername);
 
-        // Check if the user is not null
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to get current user");
         }
-
-        // Set the user to the post
         updatedPost.setUser(currentUser);
 
 
         updatedPost.setId(postId);
-        Post savedPost = postService.savePost(updatedPost);
+        postService.savePost(updatedPost);
 
-        return ResponseEntity.ok(savedPost);
+        return ResponseEntity.ok("Post updated successfully");
     }
-
-    @PreAuthorize("hasRole('USER')")
+    // Radera ett inlägg för administratörsrollen
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deletePost/{postId}")
     public ResponseEntity<?> deletePost(@PathVariable int postId) {
-        // Retrieve the post by ID from the service
+        // Hämta inlägget efter ID från tjänsten
         Post existingPost = postService.getPostById(postId).orElse(null);
 
-        // Check if the post exists
+        // Kontrollera om inlägget finns
         if (existingPost == null) {
             return ResponseEntity.notFound().build();
         }
 
-        // Get the authenticated user
+        // Hämta den autentiserade användaren
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserUsername = authentication.getName();
-        // Load the user from the database
+
+        // Ladda användaren från databasen
         User currentUser = (User) userService.loadUserByUsername(currentUserUsername);
 
-        // Check if the user is not null
+        // Kontrollera om användaren inte är null
         if (currentUser  == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to get current user");
         }
 
-        // Check if the authenticated user is the owner of the post
-        if (!currentUser .equals(existingPost.getUser())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You don't have permission to delete this post");
-        }
-
         Post post = new Post();
         post.setUser(currentUser);
-        // Delete the post
+
+        // Radera inlägget
         postService.deletePost(postId);
 
-        // Return a success response
+        // Returnera ett lyckat svar
         return ResponseEntity.ok("Post deleted successfully");
     }
 

@@ -63,7 +63,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    /* If you want account locking capabilities create variables and ways to set them for the methods below */
     @Override
     public boolean isAccountNonExpired() {
         return true;

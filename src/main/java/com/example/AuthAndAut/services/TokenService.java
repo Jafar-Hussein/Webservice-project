@@ -21,19 +21,24 @@ public class TokenService { //
     @Autowired
     private JwtDecoder jwtDecoder;
 
-    public String generateJwt(Authentication auth){
+    // Generera en JWT-token baserat på autentiseringsinformation
+    public String generateJwt(Authentication auth) {
         Instant now = Instant.now();
 
+        // Skapa en sträng av användarrollerna separerade med mellanslag
         String scope = auth.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
 
+        // Skapa JWT-anspråk (claims)
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
                 .subject(auth.getName())
                 .claim("roles", scope)
                 .build();
+
+        // Koda JWT-token med anspråk
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 }
