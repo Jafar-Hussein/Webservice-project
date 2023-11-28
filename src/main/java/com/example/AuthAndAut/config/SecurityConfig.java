@@ -41,7 +41,7 @@ public class SecurityConfig {
         this.keys = keys;
     }
 
-    // Konfigurera lösenordskryptering
+    //Konfigurera lösenordskryptering
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
