@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -20,7 +18,8 @@ public class Post {
     private String title;
     private String description;
 
-@ManyToMany(mappedBy = "posts", fetch = FetchType.EAGER)
-private Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -10,5 +10,5 @@ public class AdminController {
     @GetMapping("/")
     public String helloUserController(){
         return "admin";
-    } //
+    }
 }
