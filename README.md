@@ -60,6 +60,20 @@ The project uses Spring Security for authentication and authorization. The confi
 
 JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` beans in the `SecurityConfig` class.
 
+## Installation
+*Make sure you these downloaded before you start*
++ An IDE of your choice preferably intelliJ [Here](https://www.jetbrains.com/idea/download/#section=windows) and the latest [JDK 21](https://www.oracle.com/se/java/technologies/downloads/)
+  
+### Usage
++ Clone the repository.
++  Configure the application.properties file with your database and other settings.
++  *before you start the program*
++ start the mysql workbench and create a new database called jwtsecurit like this
+```
+CREATE DATABASE jwtsecurity;
+```
++  Run the application using your preferred IDE or by using the command: ./mvnw spring-boot:run
+
 ### dependancies
 + [Spring starter web](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web)
 + [Spring starter Test](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test)
@@ -69,15 +83,4 @@ JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` be
 + [spring security test](https://mvnrepository.com/artifact/org.springframework.security/spring-security-test)
 + [spring boot starter-oauth2 resource server](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server)
 + [Lombok](https://mvnrepository.com/artifact/org.projectlombok/lombok)
-  
-´´´
-## Installation
-*Make sure you these downloaded before you start*
-+ An IDE of your choice preferably intelliJ [Here](https://www.jetbrains.com/idea/download/#section=windows) and the latest [JDK 21](https://www.oracle.com/se/java/technologies/downloads/)
-  
-### Usage
-+ Clone the repository.
-+  Configure the application.properties file with your database and other settings.
-+  Run the application using your preferred IDE or by using the command: ./mvnw spring-boot:run
-
-
++ 
