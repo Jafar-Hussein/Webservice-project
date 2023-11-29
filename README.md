@@ -83,4 +83,4 @@ CREATE DATABASE jwtsecurity;
 + [spring security test](https://mvnrepository.com/artifact/org.springframework.security/spring-security-test)
 + [spring boot starter-oauth2 resource server](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server)
 + [Lombok](https://mvnrepository.com/artifact/org.projectlombok/lombok)
-+ 
+  
