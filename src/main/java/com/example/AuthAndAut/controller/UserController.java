@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -71,6 +72,14 @@ public class UserController {
         }
 
         return ResponseEntity.ok(posts);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/getPostById/{id}") // hämtar bara ett inlägg
+    public ResponseEntity<?> getPostById(@PathVariable int id){
+        Optional<Post> post = postService.getPostById(id);
+        return ResponseEntity.ok(post.orElse(null));
+
     }
     // Uppdatera ett inlägg för administratörsrollen
     @PreAuthorize("hasRole('ADMIN')")
