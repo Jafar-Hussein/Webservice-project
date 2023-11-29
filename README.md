@@ -61,14 +61,14 @@ The project uses Spring Security for authentication and authorization. The confi
 JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` beans in the `SecurityConfig` class.
 
 ### dependancies
-+ [Spring starter web]("https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web")
-+ [Spring starter Test]("https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test")
-+ [Spring starter data jpa]("https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa")
-+ [MySQL Connector/j]("https://mvnrepository.com/artifact/com.mysql/mysql-connector-j")
-+ [spring boot starter security]("https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security")
-+ [spring security test]("https://mvnrepository.com/artifact/org.springframework.security/spring-security-test")
-+ [spring boot starter-oauth2 resource server]("https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server")
-+ [Lombok]("https://mvnrepository.com/artifact/org.projectlombok/lombok")
++ [Spring starter web](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web)
++ [Spring starter Test](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test)
++ [Spring starter data jpa](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa)
++ [MySQL Connector/j](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j)
++ [spring boot starter security](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security)
++ [spring security test](https://mvnrepository.com/artifact/org.springframework.security/spring-security-test)
++ [spring boot starter-oauth2 resource server](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server)
++ [Lombok](https://mvnrepository.com/artifact/org.projectlombok/lombok)
 
 ### Usage
 + Clone the repository.
