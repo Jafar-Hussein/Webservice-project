@@ -60,7 +60,10 @@ The project uses Spring Security for authentication and authorization. The confi
 
 JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` beans in the `SecurityConfig` class.
 
-## Services
+### Usage
++ Clone the repository.
++  Configure the application.properties file with your database and other settings.
++  Run the application using your preferred IDE or by using the command: ./mvnw spring-boot:run
 
 ### TokenService
 
