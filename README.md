@@ -63,6 +63,7 @@ JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` be
 ## Installation
 *Make sure you these downloaded before you start*
 + An IDE of your choice preferably intelliJ [Here](https://www.jetbrains.com/idea/download/#section=windows) and the latest [JDK 21](https://www.oracle.com/se/java/technologies/downloads/)
++ download postman [Here](https://www.postman.com/)
   
 ### Usage
 + Clone the repository.
