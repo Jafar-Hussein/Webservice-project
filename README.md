@@ -70,8 +70,11 @@ JWT decoding and encoding are configured in the `JwtDecoder` and `JwtEncoder` be
 +  Configure the application.properties file with your database and other settings.
 +  *before you start the program*
 + start the mysql workbench and create a new database called jwtsecurit like this
++ then use postman using the url down below then the mapping from the program
 ```
 CREATE DATABASE jwtsecurity;
+
+http://localhost:8080
 ```
 +  Run the application using your preferred IDE or by using the command: ./mvnw spring-boot:run
 
